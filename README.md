@@ -1,1 +1,1 @@
-This repo is a spt for all my code to land concerning an accessable keyboard. Made with a Seeedstudio XIAO and CircuitPython.
+This repo is a spot for all my code to land concerning an accessable keyboard. Made with a Seeedstudio XIAO and CircuitPython. It uses a custom build of CircuitPython to enable it to function as a keyboard and mouse with IOS, Android, Windows, Mac, Linux.
