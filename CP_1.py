@@ -76,11 +76,19 @@ in_pins  = [board.D0,   # Mode Input
 out_pins = [board.D8,   # Red LED
             board.D9,   # Green LED
             board.D10]] # Blue LED
-            
+
 # use this notation to initialize the inputs
 for pin in ["D0", "D1", "D2", "D3", "D4", "D5"]:
     p = DigitalInOut(getattr(board, pin))
+    p.direction = Direction.INPUT
+    p.pull = Pull.UP
+    pins[pin] = p
+
+# use this notation to initialize the outputs
+for pin in ["D8", "D9", "D10"]:
+    p = DigitalInOut(getattr(board, pin))
     p.direction = Direction.OUTPUT
+    p.pull = Pull.UP
     pins[pin] = p
 
 # use a dictionary
