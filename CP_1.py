@@ -66,4 +66,27 @@ d_mode = [keyboard_config(Keycode.SPACE),  # SPACE
           keyboard_config(Keycode.SPACE)]  # SPACE
 
 # list comprehension https://learn.adafruit.com/74hc595/usage
-pins = [sr.get_pin(n) for n in range(8)]
+in_pins  = [board.D0,   # Mode Input
+            board.D1,   # 1st Input
+            board.D2,   # 2nd Input
+            board.D3,   # 3rd Input
+            board.D4,   # 4th Input
+            board.D5]   # 5th Input
+
+out_pins = [board.D8,   # Red LED
+            board.D9,   # Green LED
+            board.D10]] # Blue LED
+            
+# use this notation to initialize the inputs
+for pin in ["D0", "D1", "D2", "D3", "D4", "D5"]:
+    p = DigitalInOut(getattr(board, pin))
+    p.direction = Direction.OUTPUT
+    pins[pin] = p
+
+# use a dictionary
+buttonIDtoKeycode = { 1: Keycode.C,
+                      2: Keycode.O,
+                      3: Keycode.O,
+                      4: Keycode.L,
+                      5: Keycode.SPACE,
+                      6: Keycode.SHIFT}
