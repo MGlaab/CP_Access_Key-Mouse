@@ -11,18 +11,42 @@ from adafruit_hid.keycode import Keycode
 from adafruit_hid.mouse import Mouse
 import neopixel
 
+# functions TO DO
+def keyboard_config(key_to_be_pressed):
+    kbd = Keyboard(usb_hid.devices)
+    layout = KeyboardLayoutUS(kbd)
+    kbd.send(key_to_be_pressed)
+
+def mouse_config(key_to_be_pressed):
+    mouse = Mouse(usb_hid.devices)
+    mouse.click(key_to_be_pressed)
+
+# negative is left
+# positive is right
+# negative is up
+# positive is down
+# format: mouse.move(x=50, y=-20)
+
+def mouse_config_move_x(x_distance):
+    mouse = Mouse(usb_hid.devices)
+    mouse.move(x = x_distance, y = 0)
+
+def mouse_config_move_y(y_distance):
+    mouse = Mouse(usb_hid.devices)
+    mouse.move(x = 0, y = y_distance)
+
 # A simple neat keyboard demo in CircuitPython
 
 # RGB led(neopixel, WS28b12) related code
 pixels = neopixel.NeoPixel(board.D10, 1, brightness=0.3, auto_write=False)
 
 # color table for the neopixel (red, green, blue) 0-255
-# modes 1-6
+#modes 1-6
 RED    = (255,   0,   0)
 YELLOW = (255, 150,   0)
 GREEN  = (  0, 255,   0)
-CYAN   = (  0, 255, 255)
 BLUE   = (  0,   0, 255)
+CYAN   = (  0, 255, 255)
 PURPLE = (180,   0, 255)
 
 # The pins we'll use, each will have an internal pullup
@@ -39,12 +63,11 @@ keys_pressed = {
     3: [Keycode.P, Keycode.Q, Keycode.R, Keycode.S, Keycode.T],
     4: [Keycode.U, Keycode.V, Keycode.W, Keycode.X, Keycode.Y],
 }
-control_key = Keycode.SHIFT
 
 mode_counter = 0
 # define delay to smooth the buttons
 debounce_time = 0.2
-mode_color = [RED, YELLOW, GREEN, BLUE]
+mode_color = [RED, YELLOW, GREEN, BLUE, CYAN]
 
 # The keyboard object!
 time.sleep(1)  # Sleep for a bit to avoid a race condition on some systems
@@ -69,14 +92,13 @@ led.direction = digitalio.Direction.OUTPUT
 print("Waiting for key pin...")
 
 while True:
-    print('start')
     # Check the mode button
     if not D0.value:
         mode_counter += 1
         print(mode_counter)
         time.sleep(debounce_time)  # debounce delay
 
-        if mode_counter > 3:
+        if mode_counter > (len(keys_pressed)-1):
             mode_counter = 0
     print("mode counter: %d" % mode_counter)
 
@@ -95,7 +117,6 @@ while True:
             print(i)
             key = keys_pressed[mode_counter][i]
             print(key)
-            #key = keys_pressed[keys_pressed[counter_array[mode_counter]][i]]  # Get the corresponding Keycode or string
             keyboard.press(key)  # "Press"...
             keyboard.release_all()  # ..."Release"!
 
@@ -104,6 +125,5 @@ while True:
     
     pixels.fill(mode_color[mode_counter])
     pixels.show()
-    print('end')
 
     time.sleep(0.1)
