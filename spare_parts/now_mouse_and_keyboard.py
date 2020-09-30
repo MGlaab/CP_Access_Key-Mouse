@@ -65,7 +65,7 @@ keys_pressed = {
 }
 
 keys_pressed2 = {
-    0: [("MOUSE", Mouse.LEFT_BUTTON), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.B), ("KEYBOARD", Keycode.C), ("MOUSE", Mouse.LEFT_BUTTON)],
+    0: [("MOUSE", Mouse.LEFT_BUTTON), ("KEYBOARD", Keycode.A), ("MOUSE MOVE X", 10), ("MOUSE MOVE Y", 10), ("MOUSE", Mouse.LEFT_BUTTON)],
     1: [("MOUSE", Mouse.LEFT_BUTTON), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A)],
     2: [("MOUSE", Mouse.LEFT_BUTTON), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A)],
     3: [("MOUSE", Mouse.LEFT_BUTTON), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A), ("KEYBOARD", Keycode.A)],
@@ -109,7 +109,6 @@ while True:
 
         if mode_counter > (len(keys_pressed)-1):
             mode_counter = 0
-    #print("mode counter: %d" % mode_counter)
 
     # Check each pin
     for key_pin in key_pin_array:
@@ -131,9 +130,12 @@ while True:
                     
             if "KEYBOARD" in key:
                 keyboard_config(key[1])
-                    
-            #keyboard.send(key)  # "Press"...
-            #keyboard.release_all()  # ..."Release"!
+                
+            if "MOUSE MOVE X" in key:
+                mouse_config_move_x(key[1])
+
+            if "MOUSE MOVE Y" in key:
+                mouse_config_move_y(key[1])
 
             # Turn off the red LED
             led.value = False
