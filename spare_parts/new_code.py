@@ -17,6 +17,7 @@ import neopixel
 pixels = neopixel.NeoPixel(board.D10, 1, brightness=0.3, auto_write=False)
 
 # color table for the neopixel (red, green, blue) 0-255
+# modes 1-6
 RED    = (255,   0,   0)
 YELLOW = (255, 150,   0)
 GREEN  = (  0, 255,   0)
@@ -33,9 +34,9 @@ key_pin_array = []
 
 keys_pressed = {
     0: [Keycode.A, Keycode.B, Keycode.C, Keycode.D, Keycode.E],
-    2: [Keycode.F, Keycode.G, Keycode.H, Keycode.I, Keycode.J],
-    3: [Keycode.K, Keycode.L, Keycode.M, Keycode.N, Keycode.O],
-    4: [Keycode.P, Keycode.Q, Keycode.R, Keycode.S, Keycode.T],
+    1: [Keycode.F, Keycode.G, Keycode.H, Keycode.I, Keycode.J],
+    2: [Keycode.K, Keycode.L, Keycode.M, Keycode.N, Keycode.O],
+    3: [Keycode.P, Keycode.Q, Keycode.R, Keycode.S, Keycode.T],
     4: [Keycode.U, Keycode.V, Keycode.W, Keycode.X, Keycode.Y],
 }
 control_key = Keycode.SHIFT
@@ -68,6 +69,7 @@ led.direction = digitalio.Direction.OUTPUT
 print("Waiting for key pin...")
 
 while True:
+    print('start')
     # Check the mode button
     if not D0.value:
         mode_counter += 1
@@ -76,7 +78,7 @@ while True:
 
         if mode_counter > 3:
             mode_counter = 0
-    
+    print("mode counter: %d" % mode_counter)
 
     # Check each pin
     for key_pin in key_pin_array:
@@ -95,12 +97,13 @@ while True:
             print(key)
             #key = keys_pressed[keys_pressed[counter_array[mode_counter]][i]]  # Get the corresponding Keycode or string
             keyboard.press(key)  # "Press"...
-            #keyboard.release_all()  # ..."Release"!
+            keyboard.release_all()  # ..."Release"!
 
             # Turn off the red LED
             led.value = False
     
     pixels.fill(mode_color[mode_counter])
     pixels.show()
+    print('end')
 
-    time.sleep(0.01)
+    time.sleep(0.1)
