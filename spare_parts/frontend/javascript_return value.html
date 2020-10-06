@@ -12,20 +12,45 @@
 		Select a radio button and click on Submit.
 	</p>
 
-	Gender:
-	<input type="radio" name="Gender" value="Male">Male
-	<input type="radio" name="Gender" value="Female">Female
-	<input type="radio" name="Gender" value="Others">Others
+	Select Mode:
+	<input type="radio" name="Mode" value="0">Mode 1
+	<input type="radio" name="Mode" value="1">Mode 2
+	<input type="radio" name="Mode" value="2">Mode 3
+	<input type="radio" name="Mode" value="3">Mode 4
+	<input type="radio" name="Mode" value="4">Mode 5
 
 	<br>
 
-	Food Preference:
-	<input type="radio" name="Food" value="Vegetarian">Vegetarian
-	<input type="radio" name="Food" value="Non-Vegetarian">Non-Vegetarian
+	Select which input you want to modify:
+	<input type="radio" name="Input" value="0">Input 1
+	<input type="radio" name="Input" value="1">Input 2
+	<input type="radio" name="Input" value="2">Input 3
+	<input type="radio" name="Input" value="3">Input 4
+	<input type="radio" name="Input" value="4">Input 5
 
 	<br>
 
-	<button type="button" onclick="displayRadioValue()">
+	Select which type of input:
+	<input type="radio" name="Input_Type" value="KEYBOARD">Keyboard
+	<input type="radio" name="Input_Type" value="MOUSE">Mouse
+	<input type="radio" name="Input_Type" value="MOUSE MOVE X">Mouse Move Left/Right
+	<input type="radio" name="Input_Type" value="MOUSE MOVE Y">Mouse Move Up/Down
+
+	<br>
+
+	<label for="pet-select">Choose a pet:</label>
+
+	<select name="pets" id="pet-select">
+    <option value="">--Please choose an option--</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    <option value="hamster">Hamster</option>
+    <option value="parrot">Parrot</option>
+    <option value="spider">Spider</option>
+    <option value="goldfish">Goldfish</option>
+	</select>
+
+	<button type="button" onclick="runAll()">
 		Submit
 	</button>
 
@@ -34,6 +59,10 @@
 	<div id="result"></div>
 
 	<script>
+		function runAll() {
+			displayRadioValue()
+			displaySelectValue()
+		}
 		function displayRadioValue() {
 			document.getElementById("result").innerHTML = "";
 			var ele = document.getElementsByTagName('input');
@@ -49,7 +78,14 @@
 				}
 			}
 		}
+		function displaySelectValue() {
+			var x = document.getElementById("mySelect").value;
+			document.getElementById("result").innerHTML + x;
+				}
+			}
+		}
 	</script>
 </body>
 
 </html>
+0: [("MOUSE", Mouse.LEFT_BUTTON), ("KEYBOARD", Keycode.A), ("MOUSE MOVE X", 10), ("MOUSE MOVE Y", 10), ("MOUSE", Mouse.LEFT_BUTTON)],
