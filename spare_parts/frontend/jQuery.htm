@@ -17,7 +17,7 @@
         {
             $("#modes").change(function ()
                 {
-                
+
                 if ($(this).val() == 1) {
                     $("#mode_1").show();
                     }
@@ -57,7 +57,39 @@
         {
             $("#mode_1_Input_1").change(function ()
                 {
-                
+
+                if ($(this).val() == 1) {
+                    $("#mode_1_input_1").show();
+                    }
+                else if ($(this).val() == 2) {
+                    $("#mode_1_input_1").hide();
+                    $("#mode_1_input_2").show();
+                    }
+                else if ($(this).val() == 3) {
+                    $("#mode_1_input_1").hide();
+                    $("#mode_1_input_2").hide();
+                    $("#mode_1_input_3").show();
+                    }
+                else if ($(this).val() == 4) {
+                    $("#mode_1_input_1").hide();
+                    $("#mode_1_input_2").hide();
+                    $("#mode_1_input_3").hide();
+                    $("#mode_1_input_4").show();
+                    }
+                else {
+                    $("#mode_1_input_1").hide();
+                    $("#mode_1_input_2").hide();
+                    $("#mode_1_input_3").hide();
+                    $("#mode_1_input_4").hide();
+                    }
+        }
+        );
+        });
+        $(function ()
+        {
+            $("#mode_1_Input_2").change(function ()
+                {
+
                 if ($(this).val() == 1) {
                     $("#mode_1_input_1").show();
                     }
@@ -96,8 +128,8 @@
         <option value=5> 5</option>
     </select>
     <hr />
-    
-    
+
+
     <div id="mode_1" style="display: none">
         <h3>Mode 1 Inputs:</h3>
         <p>
@@ -114,13 +146,22 @@
         </select>
         <div id="mode_1_input_1" style="display: none">
         Key you would like to use:
-        See <a href="https://circuitpython.readthedocs.io/projects/hid/en/latest/api.html#adafruit-hid-keycode-keycode">Keycodes</a> for complete list of keycodes.
+        See <a href="https://circuitpython.readthedocs.io/projects/hid/en/latest/api.html#adafruit-hid-keycode-keycode" target="_blank" >Keycodes</a> for complete list of keycodes.
         <input type="text" id="Keycode" />
         <hr />
         </div>
+        <select id="mode_1_Input_2">
+        <option value=0> "Please choose an option..."</option>
+        <option value=1> Keyboard</option>
+        <option value=2> Mouse</option>
+        <option value=3> Mouse Move Left/Right</option>
+        <option value=4> Mouse Move Up/Down</option>
+        </select>
         <div id="mode_1_input_2" style="display: none">
-          mode 1 input 2
-         <hr />
+        Key you would like to use:
+        See <a href="https://circuitpython.readthedocs.io/projects/hid/en/latest/api.html#adafruit-hid-keycode-keycode" target="_blank" >Keycodes</a> for complete list of keycodes.
+        <input type="text" id="Keycode" />
+        <hr />
         </div>
         <div id="mode_1_input_3" style="display: none">
          mode 1 input 3
@@ -136,35 +177,35 @@
         </div>
         </div>
     </div>
-    
-    
+
+
     <div id="mode_2" style="display: none">
         <hr>
         Mode 2:
         <input type="text" id="mode_2_value" />
     </div>
-    
-    
+
+
     <div id="mode_3" style="display: none">
         <hr>
         Mode 3:
         <input type="text" id="mode_3_value" />
     </div>
-    
-    
+
+
     <div id="mode_4" style="display: none">
         <hr>
         Mode 4:
         <input type="text" id="mode_4_value" />
     </div>
-    
-    
+
+
     <div id="mode_5" style="display: none">
         <hr>
         Mode 5:
         <input type="text" id="mode_5_value" />
     </div>
-    
+
 
 </body>
 </html>
