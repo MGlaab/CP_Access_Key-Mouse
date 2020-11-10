@@ -10,3 +10,10 @@ friends_list = (ben,harper)
 
 for f in friends_list:
     print(f.name, "is a", f.age, "year old", f.gender, ".")
+
+
+KeyPress = collections.namedtuple('KeyPress', ('inputtype', 'buttontopress'))
+
+m1b1 = KeyPress('KEYBOARD', 'KeycodeA')
+
+print(m1b1.inputtype)
