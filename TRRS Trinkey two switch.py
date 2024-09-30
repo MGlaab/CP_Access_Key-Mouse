@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2024 Matthew Glaab
 # SPDX-License-Identifier: MIT
 
+#############################################################
+# 3D printable case files can be found here:
+# https://github.com/MGlaab/CP_Access_Key-Mouse/tree/master/TRRS%20Trinkey%20case%20STL's
+#############################################################
+
 import digitalio
 import board
 import keypad
